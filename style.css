@@ -1,0 +1,141 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #2d2013;
+}
+.top_bottom{
+    background-color: #23180d;
+}
+#logo{
+    width: 70px;
+    margin: 5px 50px;
+}
+#searchItem{
+    width: 50%;
+    margin: 5px 25%;
+    padding: 5px 20px;
+    text-align: center;
+    font-size: large;
+    flex: 1;
+}
+
+
+#searchBox {
+    display: flex;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+
+
+.fa-magnifying-glass {
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+
+#container{
+    width: 70vw;
+    margin: auto;
+}
+
+#searchBox{
+    color: white;
+    border: 2px solid white;
+    border-left: 0;
+    border-right: 0;
+ }
+ 
+.itemTotal {
+   
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.center{
+    text-align: center;
+}
+
+.color{
+    color: white;
+    margin: auto;
+}
+.item-flex-display{
+    display: flex;
+     flex-wrap: wrap; 
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+
+
+#categoriesDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+ 
+  }
+  
+ 
+  .singleMeal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+ 
+  }
+  
+  .mealImage {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+
+  }
+  
+  .mealTitle {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+   
+  }
+  
+
+  #diskOptionsAvailable {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+ 
+  }
+  
+  
+  #recipyIngredients {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  
+  }
+  
+  
+.singleMeal:hover,
+.item-flex-display > div:hover {
+    border-color: orange;
+}
+
+.singleMeal img:hover {
+    width: 220px;
+}
+
+.singleMeal p:hover {
+    color: orange;
+}
