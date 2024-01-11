@@ -12,6 +12,7 @@ function onLoad(){
     const recipyPictures = document.getElementById('recipyPictures');
     const recipyIngredients = document.getElementById('recipyIngredients');
     const recipySection = document.getElementById('recipySection');
+    const recipy = document.getElementById('recipy');
 
     const categoriesDiv = document.getElementById('categoriesDiv');
     categoriesDiv.classList.add('item-flex-display');
@@ -21,43 +22,66 @@ function onLoad(){
     const searchItem = document.getElementById('searchItem');
     const searchBox = document.getElementById('searchBox');
     const searchButton = document.getElementById('searchButton');
-    let name;
+    let name=123;
    
+    const logo = document.getElementById('logo');
+    logo.addEventListener('click',()=>{
+    //    popularIngerdientDish.style.display='none';
+    //    recipySection.style.display='none';
+    //    categoriesContainer.style.display='block';
+        window.location.reload();
+    })
 
-    searchButton.addEventListener('click',async ()=>{
-        
-       const searchItemName = searchItem.value.replace(/ /g,"%20");
-        let pic;
-        let meal;
-        let mealInstruction;
-        
 
-         if(searchItem.value != '' && name!=searchItem.value){ 
-             name = searchItem.value;
-             searchItem.value='';
-            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchItemName}`);
-            const data = await response.json();
-             meal  = data.meals[0];
+
+    searchButton.addEventListener('click', ()=>{
+        searchanddisplay();
+        });
+
+        searchItem.addEventListener('keydown',(event)=>{
+            if(event.key==="Enter"){
+                searchanddisplay();
+            }
+        })
+
+
+     async function searchanddisplay(){
+            const searchItemName = searchItem.value.replace(/ /g,"%20");
+            let pic;
+            let meal;
+            let mealInstruction;
             
-          //  popularIngerdientDish.style.display = 'none';
-          categoriesContainer.style.display='none';
-          mealInstruction=meal.strInstructions;
-            pic=meal.strMealThumb;
-          //  recipySection.style.display='none';
-            for (let i = 1; i <= 20; i++) { 
-            const ingredient = meal[`strIngredient${i}`];
-            const measure = meal[`strMeasure${i}`];
     
-            if(ingredient && measure) {
-                recipeDisplay(ingredient, measure);
+             if(searchItem.value != '' && name!=searchItem.value){ 
+                 name = searchItem.value;
+                 searchItem.value='';
+                const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchItemName}`);
+                const data = await response.json();
+                 meal  = data.meals[0];
+                
+                    recipy.innerHTML='';
+                     recipyPictures.innerHTML='';
+                    recipyIngredients.innerHTML='';
+         
+              //  popularIngerdientDish.style.display = 'none';
+              categoriesContainer.style.display='none';
+              mealInstruction=meal.strInstructions;
+                pic=meal.strMealThumb;
+              //  recipySection.style.display='none';
+                for (let i = 1; i <= 20; i++) { 
+                const ingredient = meal[`strIngredient${i}`];
+                const measure = meal[`strMeasure${i}`];
+        
+                if(ingredient && measure) {
+                    recipeDisplay(ingredient, measure);
+                }
+            }
+        
+    
+        console.log(`meal instruction : ${mealInstruction}, name : ${name},  pic: ${pic}  `)
+             recipeInstruction(mealInstruction, pic, name);
             }
         }
-    
-
-    console.log(`meal instruction : ${mealInstruction}, name : ${name},  pic: ${pic}  `)
-         recipeInstruction(mealInstruction, pic, name);
-        }
-        });
 
 
 
@@ -225,7 +249,7 @@ function recipeInstruction(instruction, image, name){
 
     recipyPictures.prepend(recipyPicturesTag);
 
-    const recipy = document.getElementById('recipy');
+    
     const instructionTag = document.createElement('h3');
     instructionTag.innerHTML=instruction;
     instructionTag.style.color='white';
@@ -240,7 +264,7 @@ function recipeDisplay(ingredient, measure) {
     singleRecipyDiv.classList.add('item-flex-display');
 
     const recipyPicturesImg = document.createElement('img');
-    recipyPicturesImg.alt = ingredient; // Set alt attribute for the image
+    recipyPicturesImg.alt = ingredient; 
     recipyPicturesImg.src = `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`;
 
     const recipyIngredientsName = document.createElement('p');
